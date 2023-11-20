@@ -1,9 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.SmartHouse" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+    <style name="Theme" parent="Theme.AppCompat.Light.NoActionBar">
 
-    <style name="Theme.SmartHouse" parent="Base.Theme.SmartHouse" />
+<!--        <item name="android:textCursorDrawable">@drawable/edittext_cursor</item>-->
+        <item name="colorAccent">@color/black_primary</item>
+    </style>
 </resources>
