@@ -13,6 +13,15 @@
         android:theme="@style/Theme"
         tools:targetApi="31">
         <activity
+            android:name=".MainMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddRoomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AdressActivity"
+            android:exported="false" />
+        <activity
             android:name=".PinCodeActivity"
             android:exported="false" />
         <activity
