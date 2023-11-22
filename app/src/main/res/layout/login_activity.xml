@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/monserrat_bold"
             android:textColor="@color/black"
+            app:backgroundTint="@color/black_primary"
             android:textSize="15sp" />
 
         <TextView
@@ -86,6 +87,7 @@
             android:fontFamily="@font/monserrat_bold"
             android:inputType="numberPassword"
             android:textColor="@color/black"
+            app:backgroundTint="@color/black_primary"
             android:textSize="15sp" />
     </LinearLayout>
 
