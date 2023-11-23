@@ -103,149 +103,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <TableLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-            <TableRow>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/light" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Свет"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/condi" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Кондиционер"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/hood" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Вытяжка"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow android:layout_marginTop="20dp">
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/thermo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Температура"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/fan" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Вентилятор"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-        </TableLayout>
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:spanCount="3"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_round" />
 
         <Button
             android:layout_width="wrap_content"

@@ -60,7 +60,8 @@
             tools:layout_editor_absoluteY="0dp"
             tools:listitem="@layout/item_device"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2" />
+            app:spanCount="2"
+            tools:itemCount="3"/>
 
         <ImageButton
             android:id="@+id/button_add"

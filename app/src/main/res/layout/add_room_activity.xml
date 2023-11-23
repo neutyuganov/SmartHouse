@@ -82,176 +82,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-        <TableLayout
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-            <TableRow>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/living" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Гостинная"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/kitchen" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Кухня"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/bathroom" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Ванная"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow android:layout_marginTop="20dp">
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/office" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Кабинет"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/bed" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Спальня"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:background="@drawable/button_round_big_grey"
-                        android:padding="10dp"
-                        android:src="@drawable/tv" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/monserrat_bold"
-                        android:text="Зал"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-        </TableLayout>
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:spanCount="3"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_round" />
 
         <Button
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="75dp"
