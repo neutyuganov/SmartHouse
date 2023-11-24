@@ -1,14 +1,15 @@
 package com.example.smarthouse
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import io.github.jan.supabase.gotrue.gotrue
 import io.github.jan.supabase.gotrue.providers.builtin.Email
@@ -43,45 +44,92 @@ class RegistrationActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Функция валидации логина
+        fun isValidEmail(email: String): Boolean {
+            val regex = Regex("[a-z0-9._-]+@[a-z0-9.-]+\\.[a-z]{2,}")
+            return regex.matches(email)
+        }
+
+        // Функция проверки полей регистрации
+        fun isEditTextsCheck(){
+            //Объявление переменных с данными из EdtText
+            val name_user = edit_text_name.text.toString()
+            val email_user = edit_text_email.text.toString()
+            val password_user = edit_text_password.text.toString()
+
+            if(name_user == "" || email_user == "" || password_user == "") {
+                goRegistration.isEnabled = false
+            }
+            else goRegistration.isEnabled = true
+        }
+
+        edit_text_name.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                isEditTextsCheck()
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+
+        edit_text_email.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                isEditTextsCheck()
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+
+        edit_text_password.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                isEditTextsCheck()
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+
         // Обработчик нажатия кнопки Регистриция
         goRegistration.setOnClickListener{
-            lifecycleScope.launch {
+            try{
+                //Объявление переменных с данными из EdtText
+                val name_user = edit_text_name.text.toString()
+                val email_user = edit_text_email.text.toString()
+                val password_user = edit_text_password.text.toString()
 
-                try{
-
-                    //Объявление переменных с данными из EdtText
-                    val name_user = edit_text_name.text.toString()
-                    val email_user = edit_text_email.text.toString()
-                    val password_user = edit_text_password.text.toString()
-
-                    // Метод валидации логина
-                    fun isValidEmail(email: String): Boolean {
-                        val regex = Regex("[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
-                        return regex.matches(email)
-                    }
-
-                    if(isValidEmail(email_user)){
-                        clientSB.gotrue.signUpWith(Email){
+                fun isRegistration(){
+                    lifecycleScope.launch {
+                        clientSB.gotrue.signUpWith(Email) {
                             email = email_user
                             password = password_user
                         }
 
-                        val user = clientSB.gotrue.retrieveUserForCurrentSession(updateSession = true)
-                        val userAdd =  UserDataClass(id = user.id, name = name_user)
+                        val user =
+                            clientSB.gotrue.retrieveUserForCurrentSession(updateSession = true)
+                        val userAdd = UserDataClass(id = user.id, name = name_user)
                         clientSB.postgrest["Users"].insert(userAdd)
 
                         // Переход на форму ввода пинкода
-                        val intent = Intent(this@RegistrationActivity, PinCodeActivity::class.java)
+                        val intent =
+                            Intent(this@RegistrationActivity, PinCodeActivity::class.java)
                         startActivity(intent)
                     }
-                    else Toast.makeText(this@RegistrationActivity,"Логин в неверном формате", Toast.LENGTH_SHORT).show()
-
-                }
-                catch (e:Exception) {
-                    Log.e("ERROR!!!!", e.toString())
                 }
 
+                when{
+                    !isValidEmail(email_user) -> edit_text_email.setError("Неверный формат почты")
+                    password_user.length < 6 -> edit_text_password.setError("Пароль может быть не меньше 6 символов")
+                    isValidEmail(email_user) && password_user.length >= 6 -> isRegistration()
+                }
             }
+            catch (e:Exception) {
+                Log.e("ERROR!!!!", e.toString())
+            }
+
         }
     }
 }

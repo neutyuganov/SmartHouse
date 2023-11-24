@@ -129,6 +129,7 @@
             android:background="@drawable/button_brown_selector"
             android:fontFamily="@font/monserrat_bold"
             android:text="Регистрация"
+            android:enabled="false"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="19sp"
