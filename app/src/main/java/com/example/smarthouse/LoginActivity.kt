@@ -64,6 +64,7 @@ class LoginActivity : AppCompatActivity() {
         goRegistration.setOnClickListener{
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
+            this@LoginActivity.finish()
         }
 
         // Функция вибрации 500 мс
@@ -175,6 +176,7 @@ class LoginActivity : AppCompatActivity() {
                             val intent =
                                 Intent(this@LoginActivity, PinCodeActivity::class.java)
                             startActivity(intent)
+                            this@LoginActivity.finish()
                         } catch (e:Exception)
                         {
                             isVibrationError()
