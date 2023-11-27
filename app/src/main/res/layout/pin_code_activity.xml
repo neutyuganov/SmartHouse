@@ -27,6 +27,7 @@
             android:src="@drawable/logo" />
 
         <TextView
+            android:id="@+id/head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -101,6 +102,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="1"
                 android:textSize="32sp" />
 
@@ -114,6 +116,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="2"
                 android:textSize="32sp" />
 
@@ -126,6 +129,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="3"
                 android:textSize="32sp" />
         </TableRow>
@@ -141,6 +145,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="4"
                 android:textSize="32sp" />
 
@@ -154,6 +159,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="5"
                 android:textSize="32sp" />
 
@@ -166,6 +172,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="6"
                 android:textSize="32sp" />
         </TableRow>
@@ -181,6 +188,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="7"
                 android:textSize="32sp" />
 
@@ -194,6 +202,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="8"
                 android:textSize="32sp" />
 
@@ -206,6 +215,7 @@
                 android:background="@drawable/button_pin_selector"
                 android:fontFamily="@font/monserrat_light"
                 android:paddingVertical="10dp"
+                android:onClick="onClick"
                 android:text="9"
                 android:textSize="32sp" />
         </TableRow>
@@ -213,7 +223,7 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/login_button_go_reg"
+        android:id="@+id/log_out"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
