@@ -19,6 +19,7 @@
             android:id="@+id/imageButton"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            style="?android:attr/borderlessButtonStyle"
             android:paddingRight="5dp"
             android:layout_marginLeft="16dp"
             android:background="@drawable/button_round_big_blue"
@@ -83,6 +84,7 @@
             app:layout_constraintTop_toBottomOf="@+id/editText" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_rooms_types"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -104,6 +106,7 @@
             android:paddingHorizontal="55dp"
             android:paddingVertical="17dp"
             android:text="Сохранить"
+            style="?android:attr/borderlessButtonStyle"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"

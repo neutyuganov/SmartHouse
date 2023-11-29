@@ -83,6 +83,14 @@ class SplashScreenActivity : AppCompatActivity() {
                         email = email1.toString()
                         password = password1.toString()
                     }
+
+                    val user = clientSB.gotrue.retrieveUserForCurrentSession(updateSession = true)
+
+                    //внести значение в "PEREMENNAYA"
+                    val editor = sharedPreferences.edit()
+                    editor.putString("USER_ID", user.id)
+                    editor.apply()
+
                     // Переход на форму ввода Логина
                     val intent = Intent(this@SplashScreenActivity, PinCodeActivity::class.java)
                     startActivity(intent)

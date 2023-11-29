@@ -6,5 +6,5 @@ import androidx.appcompat.content.res.AppCompatResources
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserDataClass(val id: String = "", val name: String = "", val avatar: String = ""){
+data class UserDataClass(val id: String = "", val name: String = "", val address: String = "", val avatar: String = ""){
 }

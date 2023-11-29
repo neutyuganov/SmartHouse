@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:fontFamily="@font/monserrat_bold"
-                android:text="г. Омск, ул. Ленина, д. 24"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/grey"
                 android:textSize="14sp" />
@@ -103,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="25dp"
+
             android:background="@drawable/button_round_big_blue_selector"
             android:padding="16dp"
             android:src="@drawable/plus"
