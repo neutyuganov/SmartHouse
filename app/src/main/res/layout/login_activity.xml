@@ -45,7 +45,7 @@
         android:fontFamily="@font/monserrat_bold"
         android:layout_marginBottom="5dp"
         android:text="Нет подключения к интернету"
-        android:textColor="#FA1624"
+        android:textColor="@color/design_default_color_error"
         android:visibility="invisible"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"

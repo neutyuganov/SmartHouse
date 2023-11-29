@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdressActivity">
+    tools:context=".AddressActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -49,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <EditText
+        android:id="@+id/edit_text_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -66,7 +67,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+    <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/monserrat_bold"
+        android:visibility="invisible"
+        android:text="Заполените поле адреса"
+        android:textAlignment="textStart"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_address" />
+
     <Button
+        android:id="@+id/button_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="75dp"

@@ -34,7 +34,7 @@
             android:name=".AddRoomActivity"
             android:exported="false" />
         <activity
-            android:name=".AdressActivity"
+            android:name=".AddressActivity"
             android:exported="false" />
         <activity
             android:name=".PinCodeActivity"

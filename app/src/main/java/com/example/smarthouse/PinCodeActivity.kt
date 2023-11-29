@@ -3,7 +3,6 @@ package com.example.smarthouse
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -15,6 +14,13 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import io.github.jan.supabase.SupabaseClient
+import io.github.jan.supabase.gotrue.gotrue
+import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.postgrest.query.Columns
+import kotlinx.coroutines.launch
+import org.json.JSONArray
 
 class PinCodeActivity : AppCompatActivity() {
 
@@ -48,8 +54,11 @@ class PinCodeActivity : AppCompatActivity() {
 
     var pinSP: String? = null
     var pinAccesSP: Boolean? = null
+    var address_add: Boolean? = null
 
     lateinit var vibrator: Vibrator
+
+    var clientSB: SupabaseClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,8 +97,14 @@ class PinCodeActivity : AppCompatActivity() {
         // SharedPreferences
         sharedPreferences=getSharedPreferences("SHARED_PREFERENCE",Context.MODE_PRIVATE)
 
+        //Подключение клиента SupaBase
+        clientSB = CreateClientSB().clientSB
+
         pinSP = sharedPreferences.getString("PIN", "")
         pinAccesSP = sharedPreferences.getBoolean("PIN_ACCESS", false)
+
+        //получить значение из "ADDRESS_ADD"
+        address_add = sharedPreferences.getBoolean("ADDRESS_ADD", false)
 
         if(pinAccesSP == false){
             head?.text = "Создайте\nпин код"
@@ -101,12 +116,7 @@ class PinCodeActivity : AppCompatActivity() {
         }
 
         log_out.setOnClickListener{
-            val editor = sharedPreferences.edit()
-            editor.putString("PIN", "")
-            editor.putBoolean("PIN_ACCESS", false)
-            editor.putString("EMAIL", "")
-            editor.putString("PASSWORD", "")
-            editor.apply()
+            sharedPreferences.edit().clear().apply()
 
             // Переход на форму ввода пинкода
             val intent =
@@ -179,13 +189,46 @@ class PinCodeActivity : AppCompatActivity() {
                 pin_indicator2?.setBackgroundResource(R.drawable.access_indicator)
                 pin_indicator3?.setBackgroundResource(R.drawable.access_indicator)
                 pin_indicator4?.setBackgroundResource(R.drawable.access_indicator)
+                pin1?.isEnabled = false
+                pin2?.isEnabled = false
+                pin3?.isEnabled = false
+                pin4?.isEnabled = false
+                pin5?.isEnabled = false
+                pin6?.isEnabled = false
+                pin7?.isEnabled = false
+                pin8?.isEnabled = false
+                pin9?.isEnabled = false
                 head?.text  = "Вы успешно\nвошли"
 
-                // Переход на форму ввода пинкода
-                val intent =
-                    Intent(this@PinCodeActivity, MainMenuActivity::class.java)
-                startActivity(intent)
-                this@PinCodeActivity.finish()
+                lifecycleScope.launch {
+
+                    // Обновление данных пользователя с добвлением адреса
+                    val user =
+                        clientSB?.gotrue?.retrieveUserForCurrentSession(updateSession = true)
+
+                    val addressResponse = clientSB?.postgrest!!["Users"].select(columns = Columns.list("address")){
+                        eq("id", user!!.id)
+                    }.body.toString()
+
+                    val array = JSONArray(addressResponse)
+                    val obj = array.getJSONObject(0)
+                    val address = obj.getString("address")
+
+                    if(address.toString() == "null"){
+                        // Переход на форму ввода пинкода
+                        val intent =
+                            Intent(this@PinCodeActivity, AddressActivity::class.java)
+                        startActivity(intent)
+                        this@PinCodeActivity.finish()
+                    }
+                    else{
+                        // Переход на форму ввода пинкода
+                        val intent =
+                            Intent(this@PinCodeActivity, MainMenuActivity::class.java)
+                        startActivity(intent)
+                        this@PinCodeActivity.finish()
+                    }
+                }
 
             } else {
                 object : CountDownTimer(500, 500) {
@@ -251,16 +294,54 @@ class PinCodeActivity : AppCompatActivity() {
                 pinNum4 = numberList[3]
                 pin_indicator4?.setBackgroundResource(R.drawable.pin_fill)
                 isVibrationClick()
-                passCodeFinish()
                 passCode = pinNum1 + pinNum2 + pinNum3 + pinNum4
                 if (pinSP == "") {
                     savePassCode(passCode)
 
-                    // Переход на форму ввода пинкода
-                    val intent =
-                        Intent(this@PinCodeActivity, MainMenuActivity::class.java)
-                    startActivity(intent)
-                    this@PinCodeActivity.finish()
+                    pin_indicator1?.setBackgroundResource(R.drawable.access_indicator)
+                    pin_indicator2?.setBackgroundResource(R.drawable.access_indicator)
+                    pin_indicator3?.setBackgroundResource(R.drawable.access_indicator)
+                    pin_indicator4?.setBackgroundResource(R.drawable.access_indicator)
+                    pin1?.isEnabled = false
+                    pin2?.isEnabled = false
+                    pin3?.isEnabled = false
+                    pin4?.isEnabled = false
+                    pin5?.isEnabled = false
+                    pin6?.isEnabled = false
+                    pin7?.isEnabled = false
+                    pin8?.isEnabled = false
+                    pin9?.isEnabled = false
+                    head?.text  = "Вы успешно\nвошли"
+
+                    lifecycleScope.launch {
+
+                        // Обновление данных пользователя с добвлением адреса
+                        val user =
+                            clientSB?.gotrue?.retrieveUserForCurrentSession(updateSession = true)
+
+                        val addressResponse = clientSB?.postgrest!!["Users"].select(columns = Columns.list("address")){
+                            eq("id", user!!.id)
+                        }.body.toString()
+
+                        val array = JSONArray(addressResponse)
+                        val obj = array.getJSONObject(0)
+                        val address = obj.getString("address")
+
+                        if(address.toString() == null){
+                            // Переход на форму ввода пинкода
+                            val intent =
+                                Intent(this@PinCodeActivity, AddressActivity::class.java)
+                            startActivity(intent)
+                            this@PinCodeActivity.finish()
+                        }
+                        else{
+                            // Переход на форму ввода пинкода
+                            val intent =
+                                Intent(this@PinCodeActivity, MainMenuActivity::class.java)
+                            startActivity(intent)
+                            this@PinCodeActivity.finish()
+                        }
+                    }
                 } else {
                     matchPassCode()
                 }
