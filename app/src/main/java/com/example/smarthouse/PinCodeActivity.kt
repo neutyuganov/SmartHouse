@@ -319,6 +319,11 @@ class PinCodeActivity : AppCompatActivity() {
                         val user =
                             clientSB?.gotrue?.retrieveUserForCurrentSession(updateSession = true)
 
+                        //внести значение в "PEREMENNAYA"
+                        val editor = sharedPreferences.edit()
+                        editor.putString("USER_ID", user?.id)
+                        editor.apply()
+
                         val addressResponse = clientSB?.postgrest!!["Users"].select(columns = Columns.list("address")){
                             eq("id", user!!.id)
                         }.body.toString()
