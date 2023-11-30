@@ -16,13 +16,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/button_back_room"
             android:layout_width="60dp"
             android:layout_height="60dp"
             style="?android:attr/borderlessButtonStyle"
             android:paddingRight="5dp"
             android:layout_marginLeft="16dp"
-            android:background="@drawable/button_round_big_blue"
+            android:background="@drawable/button_round_big_blue_selector"
             app:srcCompat="@drawable/arrow_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/button_back_room"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -54,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/edit_text_name_room"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_white"
@@ -81,7 +81,7 @@
             android:textColor="@color/grey"
             android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_name_room" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_rooms_types"
@@ -97,8 +97,9 @@
             tools:listitem="@layout/item_round" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_save_room"
             android:layout_width="wrap_content"
+            android:enabled="false"
             android:layout_height="wrap_content"
             android:layout_marginBottom="75dp"
             android:background="@drawable/button_with_text_blue_selector"

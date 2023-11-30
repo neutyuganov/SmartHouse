@@ -54,31 +54,20 @@ class MainMenuActivity : AppCompatActivity() {
             address.text = address1.toString()
         }
 
-//        lifecycleScope.launch {
-//
-//            val user = clientSB.gotrue.retrieveUserForCurrentSession(updateSession = true)
-//
-//            val response = clientSB.postgrest["Users"].select(columns = Columns.list("address")){
-//                eq("id", user.id)
-//            }.decodeSingle<UserDataClass>()
-//
-//            address.text = response.address
-//        }
-
-
-
         // Переход на ProfileActivity
         settings.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
-            this.finish()
         }
 
         // Переход на AddRoomActivity
         add_room.setOnClickListener{
             val intent = Intent(this, AddRoomActivity::class.java)
             startActivity(intent)
-            this.finish()
         }
+
+
+
+
     }
 }
